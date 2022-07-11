@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gilbert.accountbank.app.mapper.UserMapper">
+    <select id="getAllUsers" resultType="UserDto">
+        SELECT * FROM user
+    </select>
+
+    <insert id="addUser" parameterType="UserDto">
+        INSERT INTO user (username, age, bank, phone, address)
+        VALUES (#{username}, #{age}, #{bank}, #{phone}, #{address});
+    </insert>
+
+    <select id="getUser" parameterType="String" resultType="UserDto">
+        SELECT * FROM user
+        WHERE username = #{username}
+    </select>
+
+    <update id="editUser" parameterType="map">
+        UPDATE `user`
+        <set>
+            <if test="user.username != null">username=#{user.username},</if>
+            <if test="user.age != null">age=#{user.age},</if>
+            <if test="user.bank != null">bank=#{user.bank},</if>
+            <if test="user.phone != null">phone=#{user.phone},</if>
+            <if test="user.address != null">address=#{user.address},</if>
+        </set>
+        WHERE username=#{username}
+    </update>
+
+</mapper>
+

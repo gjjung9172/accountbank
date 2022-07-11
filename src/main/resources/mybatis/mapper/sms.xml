@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gilbert.accountbank.app.mapper.SmsMapper">
+    <insert id="save" parameterType="SmsDto">
+        INSERT INTO sms (uid, description, phone, date)
+        VALUES (#{uid}, #{description}, #{phone}, #{date})
+    </insert>
+
+    <select id="getSmsByUid" resultType="SmsDto" parameterType="int">
+        SELECT *
+        FROM sms
+    </select>
+
+</mapper>
